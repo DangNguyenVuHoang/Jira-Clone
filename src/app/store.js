@@ -4,10 +4,18 @@ import issueReducer from "./issueSlice";
 import storage from "redux-persist/lib/storage";
 import commentReducer from "./commentSlice";
 import { persistReducer, persistStore } from "redux-persist";
-import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
-
+import {
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import taskReducer from "./taskSlice";
 const rootReducer = combineReducers({
   project: projectReducer,
+  task: taskReducer,
   issue: issueReducer,
   comment: commentReducer,
 });
@@ -16,8 +24,6 @@ const persistConfig = {
   key: "jira",
   storage,
 };
-
-
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
